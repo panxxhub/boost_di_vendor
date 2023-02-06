@@ -10,6 +10,8 @@ ExternalProject_Add(boost_di
   GIT_REPOSITORY https://github.com/boost-ext/di.git
   GIT_TAG cpp14
   CMAKE_ARGS
+   -DBOOST_DI_OPT_BUILD_TESTS=OFF
+   -DBOOST_DI_OPT_BUILD_EXAMPLES=OFF
    -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/boost_di_install
   INSTALL_DIR "${CMAKE_CURRENT_BINARY_DIR}/boost_di_install"
 )
