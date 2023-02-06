@@ -3,17 +3,22 @@ project(boost_di_vendor)
 
 find_package(ament_cmake REQUIRED)
 
-include(FetchContent)
-set(FETCHCONTENT_QUIET OFF)
+include(ExternalProject)
 
-set(BOOST_DI_OPT_BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
-set(BOOST_DI_OPT_BUILD_EXAMPLES OFF CACHE BOOL "Build examples" FORCE)
-
-FetchContent_Declare(
-        DI
+ExternalProject_Add(boost_di
+        PREFIX boost_di
         GIT_REPOSITORY https://github.com/boost-ext/di
         GIT_TAG v1.2.0
+        CMAKE_ARGS
+         -DBOOST_DI_OPT_BUILD_TESTS=OFF
+         -DBOOST_DI_OPT_BUILD_EXAMPLES=OFF
+        INSTALL_COMMAND cmake -E echo "Skipping install step."
 )
-FetchContent_MakeAvailable(DI)
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/boost_di/src/boost_di/include
+        DESTINATION include
+)
+# export include dir
+ament_export_include_directories(include)
 
 ament_package()
