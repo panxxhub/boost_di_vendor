@@ -15,8 +15,8 @@ ExternalProject_Add(boost_di
         INSTALL_COMMAND cmake -E echo "Skipping install step."
 )
 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/boost_di/src/boost_di/include
-        DESTINATION include
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/boost_di/src/boost_di/include/
+        DESTINATION include/
 )
 # export include dir
 ament_export_include_directories(include)
